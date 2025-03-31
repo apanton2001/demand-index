@@ -1,0 +1,62 @@
+{
+  "According To Jim": {
+    "optimal_lag": 0,
+    "correlation": 0.0
+  },
+  "The Big Bang Theory": {
+    "optimal_lag": 0,
+    "correlation": 0.0
+  },
+  "Friends": {
+    "optimal_lag": 0,
+    "correlation": 0.0
+  },
+  "Criminal Minds": {
+    "optimal_lag": 0,
+    "correlation": 0.0
+  },
+  "Modern Family": {
+    "optimal_lag": 0,
+    "correlation": 0.0
+  },
+  "Grey's Anatomy": {
+    "optimal_lag": 0,
+    "correlation": 0.0
+  },
+  "Two And A Half Men": {
+    "optimal_lag": 0,
+    "correlation": 0.0
+  },
+  "NCIS": {
+    "optimal_lag": 0,
+    "correlation": 0.0
+  },
+  "Bones": {
+    "optimal_lag": 0,
+    "correlation": 0.0
+  },
+  "Scrubs": {
+    "optimal_lag": 0,
+    "correlation": 0.0
+  },
+  "House": {
+    "optimal_lag": 0,
+    "correlation": 0.0
+  },
+  "Frasier": {
+    "optimal_lag": 0,
+    "correlation": 0.0
+  },
+  "The King Of Queens": {
+    "optimal_lag": 0,
+    "correlation": 0.0
+  },
+  "How I Met Your Mother": {
+    "optimal_lag": 0,
+    "correlation": 0.0
+  },
+  "Will & Grace": {
+    "optimal_lag": 0,
+    "correlation": 0.0
+  }
+}

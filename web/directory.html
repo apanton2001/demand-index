@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Content Demand Index Directory</title>
+    <style>
+        body {
+            font-family: monospace;
+            line-height: 1.6;
+            margin: 20px;
+            color: #333;
+        }
+        a {
+            text-decoration: none;
+            color: blue;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .back-link {
+            margin-bottom: 30px;
+            display: block;
+        }
+        .dir-label {
+            margin-top: 20px;
+            font-weight: normal;
+        }
+        .nested {
+            margin-left: 20px;
+            border-left: 1px solid #ccc;
+            padding-left: 10px;
+        }
+        .item {
+            white-space: nowrap;
+            margin: 5px 0;
+        }
+        .item:before {
+            content: "├─";
+            color: #999;
+        }
+        .last-item:before {
+            content: "└─";
+            color: #999;
+        }
+    </style>
+</head>
+<body>
+    <a href="#" class="back-link">← back to directory</a>
+
+    <div>
+        <p>prompt directory:</p>
+        
+        <div class="dir-label">└─demand-index</div>
+        <div class="nested">
+            <div class="item"><a href="index.html">dashboard.html</a></div>
+            <div class="item"><a href="#" id="shows-link">shows</a></div>
+            <div class="nested shows-nested" style="display: none;">
+                <!-- Will be populated by JavaScript -->
+            </div>
+            <div class="item"><a href="#" id="territories-link">territories</a></div>
+            <div class="nested territories-nested" style="display: none;">
+                <div class="item"><a href="#us-market">us-market.html</a></div>
+                <div class="item"><a href="#global-market">global-market.html</a></div>
+                <div class="last-item"><a href="#territory-weights">territory-weights.html</a></div>
+            </div>
+            <div class="item"><a href="#" id="analytics-link">analytics</a></div>
+            <div class="nested analytics-nested" style="display: none;">
+                <div class="item"><a href="#time-lag">time-lag-analysis.html</a></div>
+                <div class="item"><a href="#momentum">momentum-factors.html</a></div>
+                <div class="last-item"><a href="#correlations">correlation-metrics.html</a></div>
+            </div>
+            <div class="item"><a href="#" id="valuations-link">valuations</a></div>
+            <div class="nested valuations-nested" style="display: none;">
+                <div class="item"><a href="#valuation-formula">valuation-formula.html</a></div>
+                <div class="last-item"><a href="correlation.html">correlation-analysis.html</a></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Password protection
+        function checkPassword() {
+            const savedPassword = localStorage.getItem('demand-index-password');
+            
+            if (!savedPassword) {
+                const password = prompt('Enter access code:');
+                if (password !== 'DemandAnalytics2025') {
+                    alert('Invalid access code');
+                    return false;
+                }
+                localStorage.setItem('demand-index-password', password);
+            }
+            return true;
+        }
+        
+        // Load shows from the valuations.json file
+        async function loadShows() {
+            if (!checkPassword()) return;
+            
+            try {
+                const response = await fetch('../dataprocessed/valuations.json');
+                const data = await response.json();
+                
+                // Sort by valuation
+                data.sort((a, b) => b.predicted_valuation - a.predicted_valuation);
+                
+                // Get the shows container
+                const showsContainer = document.querySelector('.shows-nested');
+                
+                // Populate shows
+                data.forEach((show, index) => {
+                    const isLast = index === data.length - 1;
+                    const className = isLast ? 'last-item' : 'item';
+                    const valueInMillions = (show.predicted_valuation / 1000000).toFixed(2);
+                    
+                    const showElement = document.createElement('div');
+                    showElement.className = className;
+                    showElement.innerHTML = `<a href="show.html#show/${encodeURIComponent(show.show_name)}">${show.show_name}</a> <span style="color: #666">($${valueInMillions}M)</span>`;
+                    
+                    showsContainer.appendChild(showElement);
+                });
+                
+                // Add click handler to shows link
+                document.getElementById('shows-link').addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const showsNested = document.querySelector('.shows-nested');
+                    showsNested.style.display = showsNested.style.display === 'none' ? 'block' : 'none';
+                });
+                
+                // Add click handlers to other category links
+                document.getElementById('territories-link').addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const territoriesNested = document.querySelector('.territories-nested');
+                    territoriesNested.style.display = territoriesNested.style.display === 'none' ? 'block' : 'none';
+                });
+                
+                document.getElementById('analytics-link').addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const analyticsNested = document.querySelector('.analytics-nested');
+                    analyticsNested.style.display = analyticsNested.style.display === 'none' ? 'block' : 'none';
+                });
+                
+                document.getElementById('valuations-link').addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const valuationsNested = document.querySelector('.valuations-nested');
+                    valuationsNested.style.display = valuationsNested.style.display === 'none' ? 'block' : 'none';
+                });
+                
+            } catch (error) {
+                console.error('Error loading data:', error);
+            }
+        }
+        
+        // Load data when page loads
+        document.addEventListener('DOMContentLoaded', loadShows);
+    </script>
+</body>
+</html> 

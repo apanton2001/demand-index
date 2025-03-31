@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Show Details - Content Demand Index</title>
+    <style>
+        body {
+            font-family: monospace;
+            line-height: 1.6;
+            margin: 20px;
+            color: #333;
+        }
+        a {
+            text-decoration: none;
+            color: blue;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .back-link {
+            margin-bottom: 30px;
+            display: block;
+        }
+        .show-title {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        .value {
+            font-size: 32px;
+            font-weight: bold;
+            margin-bottom: 30px;
+        }
+        .metrics {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        .metric {
+            border: 1px solid #eee;
+            padding: 15px;
+        }
+        .metric-name {
+            color: #666;
+            margin-bottom: 5px;
+        }
+        .metric-value {
+            font-size: 20px;
+            font-weight: bold;
+        }
+        .formula {
+            background-color: #f8f8f8;
+            padding: 15px;
+            border-left: 4px solid #333;
+            margin-top: 30px;
+        }
+    </style>
+</head>
+<body>
+    <a href="directory.html" class="back-link" onclick="goBack(); return false;">← back to directory</a>
+
+    <div id="show-container">
+        <div class="show-title" id="show-name">Loading show data...</div>
+        <div class="value" id="show-value"></div>
+
+        <div class="metrics">
+            <div class="metric">
+                <div class="metric-name">Demand Score</div>
+                <div class="metric-value" id="demand-score"></div>
+            </div>
+            <div class="metric">
+                <div class="metric-name">Momentum Factor</div>
+                <div class="metric-value" id="momentum-factor"></div>
+            </div>
+            <div class="metric">
+                <div class="metric-name">Revenue per Demand</div>
+                <div class="metric-value" id="revenue-per-demand"></div>
+            </div>
+            <div class="metric">
+                <div class="metric-name">Genre</div>
+                <div class="metric-value" id="genre"></div>
+            </div>
+            <div class="metric">
+                <div class="metric-name">Genre Multiplier</div>
+                <div class="metric-value" id="genre-multiplier"></div>
+            </div>
+            <div class="metric">
+                <div class="metric-name">Optimal Lag</div>
+                <div class="metric-value" id="optimal-lag"></div>
+            </div>
+        </div>
+
+        <div class="formula">
+            Value = Current Demand × Revenue/Demand Point × Momentum Factor × Genre Multiplier × Volatility Discount
+        </div>
+    </div>
+
+    <script>
+        // Function to go back to directory
+        function goBack() {
+            window.location.href = 'directory.html';
+        }
+        
+        // Password protection
+        function checkPassword() {
+            const savedPassword = localStorage.getItem('demand-index-password');
+            
+            if (!savedPassword) {
+                const password = prompt('Enter access code:');
+                if (password !== 'DemandAnalytics2025') {
+                    alert('Invalid access code');
+                    window.location.href = 'directory.html';
+                    return false;
+                }
+                localStorage.setItem('demand-index-password', password);
+            }
+            return true;
+        }
+        
+        // Load show data
+        async function loadShowData() {
+            if (!checkPassword()) return;
+            
+            try {
+                // Get show name from URL hash
+                const urlHash = window.location.hash;
+                if (!urlHash || !urlHash.startsWith('#show/')) {
+                    document.getElementById('show-name').textContent = 'No show selected';
+                    return;
+                }
+                
+                const showName = decodeURIComponent(urlHash.substring(6));
+                
+                // Fetch valuations data
+                const response = await fetch('../dataprocessed/valuations.json');
+                const data = await response.json();
+                
+                // Find the selected show
+                const show = data.find(s => s.show_name === showName);
+                
+                if (!show) {
+                    document.getElementById('show-name').textContent = 'Show not found';
+                    return;
+                }
+                
+                // Update the UI
+                document.title = `${show.show_name} - Content Demand Index`;
+                document.getElementById('show-name').textContent = show.show_name;
+                document.getElementById('show-value').textContent = `$${(show.predicted_valuation / 1000000).toFixed(2)}M`;
+                document.getElementById('demand-score').textContent = show.weighted_demand.toFixed(2);
+                document.getElementById('momentum-factor').textContent = show.momentum_factor.toFixed(2) + 'x';
+                document.getElementById('revenue-per-demand').textContent = `$${(show.revenue_per_demand / 1000000).toFixed(2)}M`;
+                document.getElementById('genre').textContent = show.genre;
+                document.getElementById('genre-multiplier').textContent = show.genre_multiplier.toFixed(2) + 'x';
+                document.getElementById('optimal-lag').textContent = `${show.optimal_lag} months`;
+                
+            } catch (error) {
+                console.error('Error loading show data:', error);
+                document.getElementById('show-name').textContent = 'Error loading show data';
+            }
+        }
+        
+        // Load data when page loads or hash changes
+        document.addEventListener('DOMContentLoaded', loadShowData);
+        window.addEventListener('hashchange', loadShowData);
+    </script>
+</body>
+</html> 

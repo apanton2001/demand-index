@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Content Demand Index</title>
+    <style>
+        body {
+            font-family: monospace;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f9fa;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        .header {
+            background-color: #333;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        .main {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 40px 20px;
+        }
+        .cards {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+            max-width: 800px;
+        }
+        .card {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            padding: 20px;
+            width: 300px;
+            transition: transform 0.3s;
+            text-align: center;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+        }
+        h1 {
+            margin: 0;
+        }
+        h2 {
+            margin-top: 0;
+            font-size: 18px;
+        }
+        a {
+            text-decoration: none;
+            color: #333;
+        }
+        .card a {
+            display: block;
+            padding: 10px;
+            background-color: #eee;
+            border-radius: 4px;
+            margin-top: 20px;
+            transition: background-color 0.3s;
+        }
+        .card a:hover {
+            background-color: #ddd;
+        }
+        .footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #eee;
+            margin-top: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Content Demand Index</h1>
+    </div>
+    
+    <div class="main">
+        <div class="cards">
+            <div class="card">
+                <h2>Directory View</h2>
+                <p>Browse content in a hierarchical directory format, similar to the interface you've seen and liked.</p>
+                <a href="directory.html">Open Directory View</a>
+            </div>
+            
+            <div class="card">
+                <h2>Dashboard View</h2>
+                <p>View all shows and metrics in a traditional dashboard layout with detailed metrics and calculations.</p>
+                <a href="dashboard.html">Open Dashboard View</a>
+            </div>
+        </div>
+    </div>
+    
+    <div class="footer">
+        <p>Content Demand Index | Access code: DemandAnalytics2025</p>
+    </div>
+    
+    <script>
+        // Password protection
+        function checkPassword() {
+            const savedPassword = localStorage.getItem('demand-index-password');
+            
+            if (!savedPassword) {
+                const password = prompt('Enter access code:');
+                if (password !== 'DemandAnalytics2025') {
+                    alert('Invalid access code');
+                    return false;
+                }
+                localStorage.setItem('demand-index-password', password);
+            }
+            return true;
+        }
+        
+        // Check password on page load
+        document.addEventListener('DOMContentLoaded', checkPassword);
+    </script>
+</body>
+</html> 

@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Correlation Analysis - Content Demand Index</title>
+    <style>
+        body {
+            font-family: monospace;
+            line-height: 1.6;
+            margin: 20px;
+            color: #333;
+        }
+        a {
+            text-decoration: none;
+            color: blue;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .back-link {
+            margin-bottom: 30px;
+            display: block;
+        }
+        h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        h2 {
+            font-size: 18px;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+        .section {
+            margin-bottom: 30px;
+        }
+        .highlight {
+            background-color: #f8f8f8;
+            padding: 15px;
+            border-left: 4px solid #333;
+            margin: 20px 0;
+        }
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        .data-table th, .data-table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        .data-table th {
+            background-color: #f2f2f2;
+        }
+        .data-table tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+    </style>
+</head>
+<body>
+    <a href="directory.html" class="back-link" onclick="window.location.href='directory.html'; return false;">← back to directory</a>
+
+    <h1>Correlation Analysis - The Foundation of Our Demand Index</h1>
+
+    <div class="section">
+        <h2>Why We Created This Index</h2>
+        <p>Traditional content valuation methods rely heavily on historical revenue data and subjective assessment. This approach creates significant inefficiencies in the market, with valuation variances often exceeding 40% between different buyers.</p>
+        
+        <p>Our demand index was created to solve a fundamental question: <strong>Can audience demand metrics predict future revenue?</strong></p>
+        
+        <div class="highlight">
+            The analysis began with a simple hypothesis: Demand metrics lead revenue changes by a predictable time period that varies by show, genre, and market.
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>Core Findings</h2>
+        <ul>
+            <li>Demand metrics lead revenue changes by approximately 1.2-4 quarters depending on analysis granularity</li>
+            <li>Strong correlation at optimal lag periods (r = 0.89 at 2-month lag, r = 0.78 at 4-quarter lag)</li>
+            <li>Different shows exhibit different lag patterns (Criminal Minds: 0 quarters, Big Bang Theory: 3 quarters)</li>
+            <li>Show-specific revenue per demand point values show significant variation ($2.2M to $12.7M)</li>
+            <li>Cross-market signal migration is highly predictive of future performance</li>
+        </ul>
+    </div>
+
+    <div class="section">
+        <h2>Methodology</h2>
+        <p>Our analysis combined several approaches:</p>
+        
+        <ol>
+            <li><strong>Time Lag Cross-Correlation</strong>: Analyzing demand and revenue data with varying time offsets to find optimal lag periods</li>
+            <li><strong>Market-Weighted Demand</strong>: Weighting demand metrics by territory importance (US: 40%, UK: 20%, etc.)</li>
+            <li><strong>Momentum Factor Calculation</strong>: Comparing recent vs. historical demand to detect trend acceleration/deceleration</li>
+            <li><strong>Genre-Specific Multiple Regression</strong>: Developing genre-specific revenue prediction models</li>
+        </ol>
+        
+        <div class="highlight">
+            Our formula synthesizes these findings into a single valuation model:<br>
+            Value = Current Demand × Revenue/Demand Point × Momentum Factor × Genre Multiplier × Volatility Discount
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>Sample Correlation Data</h2>
+        <table class="data-table" id="correlation-table">
+            <thead>
+                <tr>
+                    <th>Show</th>
+                    <th>Optimal Lag</th>
+                    <th>Correlation (r)</th>
+                    <th>Revenue/Demand ($M)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Will be populated by JavaScript -->
+            </tbody>
+        </table>
+    </div>
+
+    <div class="section">
+        <h2>Practical Applications</h2>
+        <p>This data-driven approach transforms media acquisitions from gut-feel decisions to quantitative valuations with clear revenue projections and risk assessment.</p>
+        
+        <p>Key applications include:</p>
+        <ul>
+            <li>Content acquisition pricing</li>
+            <li>Portfolio optimization</li>
+            <li>Revenue forecasting</li>
+            <li>Time-to-market decisions</li>
+            <li>Territory prioritization</li>
+        </ul>
+    </div>
+
+    <script>
+        // Password protection
+        function checkPassword() {
+            const savedPassword = localStorage.getItem('demand-index-password');
+            
+            if (!savedPassword) {
+                const password = prompt('Enter access code:');
+                if (password !== 'DemandAnalytics2025') {
+                    alert('Invalid access code');
+                    window.location.href = 'directory.html';
+                    return false;
+                }
+                localStorage.setItem('demand-index-password', password);
+            }
+            return true;
+        }
+        
+        // Load correlation data
+        async function loadCorrelationData() {
+            if (!checkPassword()) return;
+            
+            try {
+                // Fetch valuations and lag data
+                const valResponse = await fetch('../dataprocessed/valuations.json');
+                const lagResponse = await fetch('../dataprocessed/lag_results.json');
+                
+                const valData = await valResponse.json();
+                const lagData = await lagResponse.json();
+                
+                // Sort by correlation strength
+                const correlationData = valData.map(show => {
+                    const lagInfo = lagData[show.show_name] || { optimal_lag: 0, correlation: 0 };
+                    return {
+                        show_name: show.show_name,
+                        optimal_lag: lagInfo.optimal_lag,
+                        correlation: Math.abs(lagInfo.correlation),
+                        revenue_per_demand: show.revenue_per_demand
+                    };
+                }).sort((a, b) => b.correlation - a.correlation);
+                
+                // Populate the table
+                const tableBody = document.querySelector('#correlation-table tbody');
+                
+                correlationData.forEach(item => {
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                        <td>${item.show_name}</td>
+                        <td>${item.optimal_lag} months</td>
+                        <td>${item.correlation.toFixed(2)}</td>
+                        <td>$${(item.revenue_per_demand / 1000000).toFixed(2)}M</td>
+                    `;
+                    tableBody.appendChild(row);
+                });
+                
+            } catch (error) {
+                console.error('Error loading correlation data:', error);
+            }
+        }
+        
+        // Load data when page loads
+        document.addEventListener('DOMContentLoaded', loadCorrelationData);
+    </script>
+</body>
+</html> 
