@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Momentum Factor Calculation - Content Demand Index</title>
+    <style>
+        body {
+            font-family: monospace;
+            line-height: 1.6;
+            margin: 20px;
+            color: #333;
+        }
+        a {
+            text-decoration: none;
+            color: blue;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .back-link {
+            margin-bottom: 30px;
+            display: block;
+        }
+        h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        h2 {
+            font-size: 18px;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+        .section {
+            margin-bottom: 30px;
+        }
+        .highlight {
+            background-color: #f8f8f8;
+            padding: 15px;
+            border-left: 4px solid #333;
+            margin: 20px 0;
+        }
+        .chart-container {
+            margin: 20px 0;
+            text-align: center;
+        }
+        .chart-container img {
+            max-width: 100%;
+            box-shadow: 0 0 5px rgba(0,0,0,0.2);
+        }
+        .formula {
+            font-family: monospace;
+            background-color: #f8f8f8;
+            padding: 10px;
+            border-radius: 4px;
+            margin: 10px 0;
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin: 20px 0;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        .trend-positive {
+            color: green;
+            font-weight: bold;
+        }
+        .trend-negative {
+            color: red;
+            font-weight: bold;
+        }
+        .trend-neutral {
+            color: gray;
+        }
+    </style>
+</head>
+<body>
+    <a href="directory.html" class="back-link">← back to directory</a>
+
+    <h1>Momentum Factor Calculation Methodology</h1>
+
+    <div class="section">
+        <h2>Overview</h2>
+        <p>
+            The Momentum Factor Calculation methodology analyzes the trajectory of audience demand by comparing 
+            recent demand metrics to historical patterns. This temporal analysis identifies content with accelerating 
+            or decelerating audience interest, providing a dynamic component to content valuation that captures 
+            emerging trends and lifecycle changes.
+        </p>
+        
+        <div class="highlight">
+            <p><strong>Key Concept:</strong> Content value is not static - it follows a lifecycle with periods of growth, 
+            stability, and decline. By measuring the rate of change in demand, we can more accurately predict future 
+            performance and adjust valuations accordingly.</p>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>Methodology</h2>
+        <p>The momentum factor calculation follows these steps:</p>
+        
+        <ol>
+            <li><strong>Time Window Definition:</strong> Establish two adjacent time periods for comparison:
+                <ul>
+                    <li>Recent period: The most recent 90 days of demand data</li>
+                    <li>Previous period: The 90 days preceding the recent period</li>
+                </ul>
+            </li>
+            <li><strong>Demand Aggregation:</strong> Calculate the average demand for each time window</li>
+            <li><strong>Momentum Calculation:</strong> Compute the ratio between recent and previous demand</li>
+            <li><strong>Trend Categorization:</strong> Classify content based on momentum factor thresholds</li>
+            <li><strong>Visualization:</strong> Map momentum trends over time to identify patterns</li>
+        </ol>
+        
+        <div class="formula">
+            Momentum Factor = Recent Demand (last 90 days) / Previous Demand (prior 90 days)
+            <br><br>
+            Where:
+            <br>
+            Momentum > 1: Increasing demand (positive momentum)
+            <br>
+            Momentum = 1: Stable demand (neutral momentum)
+            <br>
+            Momentum < 1: Decreasing demand (negative momentum)
+        </div>
+    </div>
+    
+    <div class="section">
+        <h2>Trend Classification</h2>
+        
+        <table>
+            <tr>
+                <th>Momentum Range</th>
+                <th>Trend Classification</th>
+                <th>Interpretation</th>
+            </tr>
+            <tr>
+                <td class="trend-positive">Greater than 1.15</td>
+                <td class="trend-positive">Strong Upward Trend</td>
+                <td>Rapidly growing audience interest; potential breakout content</td>
+            </tr>
+            <tr>
+                <td class="trend-positive">1.05 to 1.15</td>
+                <td class="trend-positive">Upward Trend</td>
+                <td>Steadily increasing audience interest; healthy growth</td>
+            </tr>
+            <tr>
+                <td class="trend-neutral">0.95 to 1.05</td>
+                <td class="trend-neutral">Neutral Trend</td>
+                <td>Stable audience interest; consistent performance</td>
+            </tr>
+            <tr>
+                <td class="trend-negative">0.85 to 0.95</td>
+                <td class="trend-negative">Downward Trend</td>
+                <td>Declining audience interest; potential value decrease</td>
+            </tr>
+            <tr>
+                <td class="trend-negative">Less than 0.85</td>
+                <td class="trend-negative">Strong Downward Trend</td>
+                <td>Rapidly falling audience interest; significant value decline</td>
+            </tr>
+        </table>
+        
+        <div class="chart-container">
+            <img src="images/momentum_trend_distribution.png" alt="Momentum Trend Distribution">
+            <p><em>Distribution of shows across momentum trend categories</em></p>
+        </div>
+    </div>
+    
+    <div class="section">
+        <h2>Visual Analysis</h2>
+        
+        <div class="chart-container">
+            <img src="images/momentum_distribution.png" alt="Momentum Distribution">
+            <p><em>Distribution of momentum factors across analyzed shows</em></p>
+        </div>
+        
+        <div class="chart-container">
+            <img src="images/momentum_extremes.png" alt="Shows with Extreme Momentum">
+            <p><em>Shows with highest and lowest momentum factors</em></p>
+        </div>
+        
+        <div class="highlight">
+            <p><strong>Example Analysis:</strong> Time series visualization of a show with <span class="trend-positive">strong positive momentum</span> (Momentum Factor: 1.32)</p>
+            <div class="chart-container">
+                <img src="images/momentum_The_Big_Bang_Theory.png" alt="Show with Positive Momentum" onerror="this.src='images/momentum_extremes.png'">
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>Applications in Content Valuation</h2>
+        <p>
+            Momentum factors provide critical dynamic insights for content valuation:
+        </p>
+        <ul>
+            <li><strong>Forward-Looking Metrics:</strong> Identify emerging opportunities before they reach peak value</li>
+            <li><strong>Lifecycle Adjustment:</strong> Correct valuations based on content's position in its lifecycle</li>
+            <li><strong>Risk Management:</strong> Flag content with accelerating decline for portfolio rebalancing</li>
+            <li><strong>Acquisition Timing:</strong> Optimize content acquisition to capture rising momentum</li>
+            <li><strong>Performance Forecasting:</strong> Improve revenue projections by incorporating momentum trends</li>
+        </ul>
+        
+        <div class="formula">
+            Final Valuation Component = Base Valuation × Momentum Factor
+            <br><br>
+            Example:
+            <br>
+            - Show with stable demand (Momentum = 1.0): Valuation unchanged
+            <br>
+            - Show with strong positive momentum (Momentum = 1.3): Valuation increased by 30%
+            <br>
+            - Show with negative momentum (Momentum = 0.8): Valuation decreased by 20%
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>Limitations</h2>
+        <ul>
+            <li>Requires consistent historical data (minimum 180 days)</li>
+            <li>May be affected by seasonal variations in demand</li>
+            <li>Fixed window sizes may not be optimal for all content types</li>
+            <li>Doesn't account for expected lifecycle patterns (e.g., normal decay for older content)</li>
+            <li>Momentum can be volatile and may require smoothing techniques for stable valuation</li>
+        </ul>
+    </div>
+
+    <script>
+        // Password protection
+        function checkPassword() {
+            const savedPassword = localStorage.getItem('demand-index-password');
+            
+            if (!savedPassword) {
+                const password = prompt('Enter access code:');
+                if (password !== 'isabela2025') {
+                    alert('Invalid access code');
+                    window.location.href = 'directory.html';
+                    return false;
+                }
+                localStorage.setItem('demand-index-password', password);
+            }
+            return true;
+        }
+        
+        document.addEventListener('DOMContentLoaded', checkPassword);
+    </script>
+</body>
+</html> 

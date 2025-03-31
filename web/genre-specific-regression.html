@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Genre-Specific Regression - Content Demand Index</title>
+    <style>
+        body {
+            font-family: monospace;
+            line-height: 1.6;
+            margin: 20px;
+            color: #333;
+        }
+        a {
+            text-decoration: none;
+            color: blue;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .back-link {
+            margin-bottom: 30px;
+            display: block;
+        }
+        h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        h2 {
+            font-size: 18px;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+        .section {
+            margin-bottom: 30px;
+        }
+        .highlight {
+            background-color: #f8f8f8;
+            padding: 15px;
+            border-left: 4px solid #333;
+            margin: 20px 0;
+        }
+        .chart-container {
+            margin: 20px 0;
+            text-align: center;
+        }
+        .chart-container img {
+            max-width: 100%;
+            box-shadow: 0 0 5px rgba(0,0,0,0.2);
+        }
+        .formula {
+            font-family: monospace;
+            background-color: #f8f8f8;
+            padding: 10px;
+            border-radius: 4px;
+            margin: 10px 0;
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin: 20px 0;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        .multiplier-high {
+            color: green;
+            font-weight: bold;
+        }
+        .multiplier-low {
+            color: red;
+            font-weight: bold;
+        }
+        .multiplier-neutral {
+            color: gray;
+        }
+    </style>
+</head>
+<body>
+    <a href="directory.html" class="back-link">← back to directory</a>
+
+    <h1>Genre-Specific Regression Methodology</h1>
+
+    <div class="section">
+        <h2>Overview</h2>
+        <p>
+            The Genre-Specific Regression methodology develops separate demand-to-revenue models for different content 
+            genres, recognizing that the relationship between audience demand and revenue generation varies significantly 
+            by content type. This approach enables more precise valuation by accounting for genre-specific factors that 
+            affect monetization efficiency.
+        </p>
+        
+        <div class="highlight">
+            <p><strong>Key Concept:</strong> Different genres convert audience demand into revenue at different rates. For example, 
+            a crime drama with the same demand level as a sitcom may generate substantially different revenue due to variations 
+            in audience demographics, viewing patterns, and advertising effectiveness.</p>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>Methodology</h2>
+        <p>The genre-specific regression analysis follows these steps:</p>
+        
+        <ol>
+            <li><strong>Genre Classification:</strong> Categorize content into well-defined genres based on:
+                <ul>
+                    <li>Primary content category (Comedy, Drama, Crime, etc.)</li>
+                    <li>Target audience and demographic appeal</li>
+                    <li>Narrative structure and production characteristics</li>
+                </ul>
+            </li>
+            <li><strong>Data Aggregation:</strong> For each genre, collect paired demand and revenue metrics</li>
+            <li><strong>Linear Regression:</strong> Develop genre-specific regression models predicting revenue from demand</li>
+            <li><strong>Coefficient Analysis:</strong> Calculate the revenue-per-demand-point ratio for each genre</li>
+            <li><strong>Multiplier Derivation:</strong> Determine genre multipliers relative to the overall average</li>
+        </ol>
+        
+        <div class="formula">
+            Revenue = β₀ + β₁ × Demand
+            <br>
+            Where β₁ is the Revenue per Demand Point for a specific genre
+            <br><br>
+            Genre Multiplier = Revenue per Demand Point (Genre) / Revenue per Demand Point (All Shows)
+        </div>
+    </div>
+    
+    <div class="section">
+        <h2>Genre Multipliers</h2>
+        
+        <div class="chart-container">
+            <img src="images/genre_multipliers.png" alt="Genre Multipliers">
+            <p><em>Genre multipliers relative to the overall average (1.0)</em></p>
+        </div>
+        
+        <table>
+            <tr>
+                <th>Genre</th>
+                <th>Multiplier</th>
+                <th>Justification</th>
+            </tr>
+            <tr>
+                <td>Crime</td>
+                <td class="multiplier-high">1.3x</td>
+                <td>Higher audience engagement, consistent viewership, strong syndication value</td>
+            </tr>
+            <tr>
+                <td>Medical</td>
+                <td class="multiplier-high">1.25x</td>
+                <td>Valuable demographics, strong international appeal, long-running potential</td>
+            </tr>
+            <tr>
+                <td>Drama</td>
+                <td class="multiplier-high">1.2x</td>
+                <td>Premium audience, higher ad rates, strong streaming performance</td>
+            </tr>
+            <tr>
+                <td>Comedy</td>
+                <td class="multiplier-high">1.1x</td>
+                <td>Excellent repeatability, broad audience appeal, strong syndication demand</td>
+            </tr>
+            <tr>
+                <td>Default/Other</td>
+                <td class="multiplier-neutral">1.0x</td>
+                <td>Baseline average across all content types</td>
+            </tr>
+        </table>
+    </div>
+    
+    <div class="section">
+        <h2>Regression Analysis</h2>
+        
+        <div class="chart-container">
+            <img src="images/genre_regression_scatter.png" alt="Genre Regression Scatter">
+            <p><em>Demand vs. Revenue relationship by genre with regression lines</em></p>
+        </div>
+        
+        <div class="chart-container">
+            <img src="images/genre_prediction_comparison.png" alt="Genre Prediction Comparison">
+            <p><em>Actual vs. predicted revenue by genre</em></p>
+        </div>
+        
+        <div class="chart-container">
+            <img src="images/genre_model_performance.png" alt="Genre Model Performance">
+            <p><em>Model performance metrics (R² and RMSE) by genre</em></p>
+        </div>
+        
+        <div class="highlight">
+            <p><strong>Key Findings:</strong></p>
+            <ul>
+                <li>Crime and Medical genres show the steepest demand-to-revenue slopes</li>
+                <li>Comedy shows highest R² value, indicating most predictable revenue from demand</li>
+                <li>Genre-specific models reduce prediction error by 15-30% compared to general model</li>
+                <li>Significant differences in revenue per demand point confirm importance of genre-specific approach</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>Applications in Content Valuation</h2>
+        <p>
+            Genre-specific regression provides several critical advantages in content valuation:
+        </p>
+        <ul>
+            <li><strong>Precision Valuation:</strong> More accurate revenue prediction by accounting for genre-specific factors</li>
+            <li><strong>Genre Benchmarking:</strong> Ability to compare content performance within and across genres</li>
+            <li><strong>Portfolio Optimization:</strong> Strategic balancing of genre mix based on valuation efficiency</li>
+            <li><strong>Acquisition Guidance:</strong> Genre-adjusted bidding strategies for content acquisition</li>
+            <li><strong>Opportunity Identification:</strong> Detection of undervalued content in high-multiplier genres</li>
+        </ul>
+        
+        <div class="formula">
+            Genre-Adjusted Valuation = Demand × Revenue per Demand Point (Genre) × Genre Multiplier × Other Factors
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>Example Valuations</h2>
+        <p>
+            The table below demonstrates how genre adjustment affects content valuation:
+        </p>
+        
+        <table>
+            <tr>
+                <th>Show</th>
+                <th>Genre</th>
+                <th>Demand Score</th>
+                <th>Base Valuation</th>
+                <th>Genre Multiplier</th>
+                <th>Adjusted Valuation</th>
+                <th>Effect</th>
+            </tr>
+            <tr>
+                <td>Show A</td>
+                <td>Crime</td>
+                <td>8.5</td>
+                <td>$850,000</td>
+                <td class="multiplier-high">1.3x</td>
+                <td>$1,105,000</td>
+                <td class="multiplier-high">+$255,000</td>
+            </tr>
+            <tr>
+                <td>Show B</td>
+                <td>Comedy</td>
+                <td>9.2</td>
+                <td>$920,000</td>
+                <td class="multiplier-high">1.1x</td>
+                <td>$1,012,000</td>
+                <td class="multiplier-high">+$92,000</td>
+            </tr>
+            <tr>
+                <td>Show C</td>
+                <td>Default/Other</td>
+                <td>8.8</td>
+                <td>$880,000</td>
+                <td class="multiplier-neutral">1.0x</td>
+                <td>$880,000</td>
+                <td class="multiplier-neutral">$0</td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="section">
+        <h2>Limitations</h2>
+        <ul>
+            <li>Requires sufficient data points for each genre to develop robust models</li>
+            <li>Genre boundaries can be ambiguous for hybrid or innovative content</li>
+            <li>May not fully capture unique factors for exceptional content within a genre</li>
+            <li>Historical relationship may not predict future shifts in audience preferences</li>
+            <li>Simplifies complex genre interactions that may affect valuation</li>
+        </ul>
+    </div>
+
+    <script>
+        // Password protection
+        function checkPassword() {
+            const savedPassword = localStorage.getItem('demand-index-password');
+            
+            if (!savedPassword) {
+                const password = prompt('Enter access code:');
+                if (password !== 'isabela2025') {
+                    alert('Invalid access code');
+                    window.location.href = 'directory.html';
+                    return false;
+                }
+                localStorage.setItem('demand-index-password', password);
+            }
+            return true;
+        }
+        
+        document.addEventListener('DOMContentLoaded', checkPassword);
+    </script>
+</body>
+</html> 

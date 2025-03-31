@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Time Lag Correlation - Content Demand Index</title>
+    <style>
+        body {
+            font-family: monospace;
+            line-height: 1.6;
+            margin: 20px;
+            color: #333;
+        }
+        a {
+            text-decoration: none;
+            color: blue;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .back-link {
+            margin-bottom: 30px;
+            display: block;
+        }
+        h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        h2 {
+            font-size: 18px;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+        .section {
+            margin-bottom: 30px;
+        }
+        .highlight {
+            background-color: #f8f8f8;
+            padding: 15px;
+            border-left: 4px solid #333;
+            margin: 20px 0;
+        }
+        .chart-container {
+            margin: 20px 0;
+            text-align: center;
+        }
+        .chart-container img {
+            max-width: 100%;
+            box-shadow: 0 0 5px rgba(0,0,0,0.2);
+        }
+        .formula {
+            font-family: monospace;
+            background-color: #f8f8f8;
+            padding: 10px;
+            border-radius: 4px;
+            margin: 10px 0;
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin: 20px 0;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+    </style>
+</head>
+<body>
+    <a href="directory.html" class="back-link">← back to directory</a>
+
+    <h1>Time Lag Correlation Methodology</h1>
+
+    <div class="section">
+        <h2>Overview</h2>
+        <p>
+            The Time Lag Correlation methodology analyzes the relationship between demand metrics and revenue outcomes with varying 
+            time offsets. This analysis helps identify the optimal lag period between changes in audience demand and corresponding 
+            changes in content revenue, providing critical insights for more accurate content valuation.
+        </p>
+        
+        <div class="highlight">
+            <p><strong>Key Concept:</strong> Content demand typically precedes revenue generation by a specific time period that varies by show type.</p>
+            <p>By identifying this optimal lag period, we can:</p>
+            <ul>
+                <li>More accurately predict future revenue based on current demand</li>
+                <li>Better understand the demand-revenue relationship for different content types</li>
+                <li>Improve content valuation by incorporating temporal dynamics</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>Methodology</h2>
+        <p>The time lag correlation analysis follows these steps:</p>
+        
+        <ol>
+            <li><strong>Data Preparation:</strong> Align demand and revenue data by show and date</li>
+            <li><strong>Lag Generation:</strong> Create multiple versions of the demand data with different time offsets (0-12 months)</li>
+            <li><strong>Correlation Calculation:</strong> For each lag period, calculate the correlation between lagged demand and revenue</li>
+            <li><strong>Optimal Lag Identification:</strong> Determine the lag period that maximizes the correlation for each show</li>
+            <li><strong>Pattern Analysis:</strong> Analyze patterns in optimal lag periods across different shows</li>
+        </ol>
+        
+        <div class="formula">
+            For each show and lag period (L):
+            <br>
+            Correlation(L) = Pearson's r between Demand(t) and Revenue(t+L)
+            <br>
+            Optimal Lag = L where |Correlation(L)| is maximized
+        </div>
+    </div>
+    
+    <div class="section">
+        <h2>Sample Results</h2>
+        
+        <div class="chart-container">
+            <img src="images/time_lag_correlation_chart.png" alt="Time Lag Correlation Chart">
+            <p><em>Time lag correlation analysis for selected shows</em></p>
+        </div>
+        
+        <div class="chart-container">
+            <img src="images/optimal_lag_by_show.png" alt="Optimal Lag by Show">
+            <p><em>Optimal lag periods by show with correlation strength</em></p>
+        </div>
+        
+        <table>
+            <tr>
+                <th>Show Type</th>
+                <th>Typical Optimal Lag</th>
+                <th>Correlation Strength</th>
+                <th>Notes</th>
+            </tr>
+            <tr>
+                <td>Sitcoms</td>
+                <td>3-4 months</td>
+                <td>Moderate (0.4-0.6)</td>
+                <td>Relatively stable demand-revenue relationship</td>
+            </tr>
+            <tr>
+                <td>Dramas</td>
+                <td>4-6 months</td>
+                <td>Strong (0.6-0.8)</td>
+                <td>Longer decision cycle for viewers</td>
+            </tr>
+            <tr>
+                <td>Crime Shows</td>
+                <td>2-3 months</td>
+                <td>Very Strong (0.7-0.9)</td>
+                <td>Highly predictable audience behavior</td>
+            </tr>
+            <tr>
+                <td>Medical Shows</td>
+                <td>3-5 months</td>
+                <td>Moderate (0.5-0.7)</td>
+                <td>Consistent demand patterns</td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="section">
+        <h2>Applications in Content Valuation</h2>
+        <p>
+            Time lag analysis significantly improves content valuation by:
+        </p>
+        <ul>
+            <li><strong>Forward-Looking Metrics:</strong> Using current demand to predict future revenue with appropriate lag</li>
+            <li><strong>Risk Assessment:</strong> Quantifying the stability of the demand-revenue relationship through correlation strength</li>
+            <li><strong>Content Type Insights:</strong> Recognizing different temporal dynamics across content categories</li>
+            <li><strong>Acquisition Timing:</strong> Optimizing content acquisition based on expected revenue timing</li>
+        </ul>
+        
+        <div class="highlight">
+            <p><strong>Valuation Impact:</strong> The identified optimal lag period is incorporated into the content valuation model as:</p>
+            <div class="formula">
+                Lagged Valuation = Current Demand × Revenue/Demand Point × Correlation Strength
+            </div>
+            <p>This adjustment ensures that the valuation reflects the temporal relationship between demand and revenue.</p>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>Limitations</h2>
+        <ul>
+            <li>Requires sufficient historical data for both demand and revenue</li>
+            <li>Assumes consistent lag patterns over time</li>
+            <li>May be affected by external market factors not captured in the model</li>
+            <li>Optimal lag periods may vary by territory or distribution channel</li>
+        </ul>
+    </div>
+
+    <script>
+        // Password protection
+        function checkPassword() {
+            const savedPassword = localStorage.getItem('demand-index-password');
+            
+            if (!savedPassword) {
+                const password = prompt('Enter access code:');
+                if (password !== 'isabela2025') {
+                    alert('Invalid access code');
+                    window.location.href = 'directory.html';
+                    return false;
+                }
+                localStorage.setItem('demand-index-password', password);
+            }
+            return true;
+        }
+        
+        document.addEventListener('DOMContentLoaded', checkPassword);
+    </script>
+</body>
+</html> 

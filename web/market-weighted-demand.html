@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Market-Weighted Demand - Content Demand Index</title>
+    <style>
+        body {
+            font-family: monospace;
+            line-height: 1.6;
+            margin: 20px;
+            color: #333;
+        }
+        a {
+            text-decoration: none;
+            color: blue;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .back-link {
+            margin-bottom: 30px;
+            display: block;
+        }
+        h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        h2 {
+            font-size: 18px;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+        .section {
+            margin-bottom: 30px;
+        }
+        .highlight {
+            background-color: #f8f8f8;
+            padding: 15px;
+            border-left: 4px solid #333;
+            margin: 20px 0;
+        }
+        .chart-container {
+            margin: 20px 0;
+            text-align: center;
+        }
+        .chart-container img {
+            max-width: 100%;
+            box-shadow: 0 0 5px rgba(0,0,0,0.2);
+        }
+        .formula {
+            font-family: monospace;
+            background-color: #f8f8f8;
+            padding: 10px;
+            border-radius: 4px;
+            margin: 10px 0;
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin: 20px 0;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+    </style>
+</head>
+<body>
+    <a href="directory.html" class="back-link">← back to directory</a>
+
+    <h1>Market-Weighted Demand Methodology</h1>
+
+    <div class="section">
+        <h2>Overview</h2>
+        <p>
+            The Market-Weighted Demand methodology adjusts raw audience demand metrics by applying territory-specific 
+            weights that reflect the strategic and commercial importance of different geographic markets. This weighting 
+            system provides a more accurate representation of content's actual commercial value by prioritizing performance 
+            in key markets.
+        </p>
+        
+        <div class="highlight">
+            <p><strong>Key Concept:</strong> Not all markets contribute equally to content value. A show with high demand in 
+            the US market may have greater commercial potential than a show with the same overall demand but distributed 
+            differently across less commercially significant territories.</p>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>Methodology</h2>
+        <p>The market-weighted demand calculation follows these steps:</p>
+        
+        <ol>
+            <li><strong>Territory Weight Assignment:</strong> Define importance weights for each market based on:
+                <ul>
+                    <li>Market size (population, GDP)</li>
+                    <li>Strategic importance (growth potential)</li>
+                    <li>Revenue generation capability</li>
+                    <li>Distribution reach and licensing value</li>
+                </ul>
+            </li>
+            <li><strong>Raw Demand Measurement:</strong> Collect demand metrics for content across all available territories</li>
+            <li><strong>Weight Application:</strong> Apply the territory-specific weights to adjust raw demand scores</li>
+            <li><strong>Aggregation:</strong> Calculate the weighted demand score by territory and across all territories</li>
+            <li><strong>Ranking Adjustment:</strong> Evaluate how weighting affects the relative ranking of content</li>
+        </ol>
+        
+        <div class="formula">
+            Weighted Demand = ∑(Territory Demand × Territory Weight)
+            <br>
+            Where: ∑(Territory Weights) = 1
+        </div>
+    </div>
+    
+    <div class="section">
+        <h2>Territory Weights</h2>
+        
+        <table>
+            <tr>
+                <th>Territory</th>
+                <th>Weight</th>
+                <th>Justification</th>
+            </tr>
+            <tr>
+                <td>United States</td>
+                <td>40%</td>
+                <td>Largest content market by revenue; highest licensing fees</td>
+            </tr>
+            <tr>
+                <td>United Kingdom</td>
+                <td>20%</td>
+                <td>Major English-language market; strong production hub</td>
+            </tr>
+            <tr>
+                <td>Canada</td>
+                <td>15%</td>
+                <td>North American integration; significant licensing value</td>
+            </tr>
+            <tr>
+                <td>Australia</td>
+                <td>15%</td>
+                <td>Key English-language market; high per-capita content consumption</td>
+            </tr>
+            <tr>
+                <td>France</td>
+                <td>10%</td>
+                <td>Major European market; cultural industry importance</td>
+            </tr>
+            <tr>
+                <td>Other markets</td>
+                <td>5% (default)</td>
+                <td>Varying significance based on content type</td>
+            </tr>
+        </table>
+        
+        <div class="chart-container">
+            <img src="images/territory_contribution_pie.png" alt="Territory Contribution">
+            <p><em>Territory contribution to total weighted demand after weighting</em></p>
+        </div>
+    </div>
+    
+    <div class="section">
+        <h2>Impact Analysis</h2>
+        
+        <p>
+            Market weighting significantly affects content valuation and can change the relative ranking of shows. 
+            Our analysis demonstrates several key patterns:
+        </p>
+        
+        <div class="chart-container">
+            <img src="images/rank_changes_bar.png" alt="Rank Changes">
+            <p><em>Shows with the greatest rank changes due to market weighting</em></p>
+        </div>
+        
+        <div class="chart-container">
+            <img src="images/raw_vs_weighted_scatter.png" alt="Raw vs Weighted Scatter">
+            <p><em>Comparison of raw demand scores vs. weighted demand scores</em></p>
+        </div>
+        
+        <div class="highlight">
+            <p><strong>Key Findings:</strong></p>
+            <ul>
+                <li>Shows with strong US performance tend to gain in weighted rankings</li>
+                <li>Content that performs better in secondary markets may see valuation decreases</li>
+                <li>The weighting system can identify "hidden gems" – content with exceptional performance in key territories</li>
+                <li>Market weighting typically increases the spread between top and bottom performers</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>Applications in Content Valuation</h2>
+        <p>
+            Market-weighted demand metrics provide several critical advantages in content valuation:
+        </p>
+        <ul>
+            <li><strong>Better Revenue Prediction:</strong> Stronger correlation with actual revenue generation</li>
+            <li><strong>Strategic Alignment:</strong> Valuation that reflects organizational priorities and target markets</li>
+            <li><strong>Acquisition Guidance:</strong> More precise content evaluation for purchasing decisions</li>
+            <li><strong>Distribution Planning:</strong> Insights to optimize territory-specific distribution strategies</li>
+            <li><strong>Portfolio Balancing:</strong> Identification of content that performs well in underrepresented key markets</li>
+        </ul>
+        
+        <div class="formula">
+            Final Valuation Component = Weighted Demand × Revenue/Demand Point × Other Factors
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>Limitations</h2>
+        <ul>
+            <li>Requires reliable demand data from multiple territories</li>
+            <li>Weight assignments may need regular review and adjustment</li>
+            <li>May not fully account for niche content with unique territory patterns</li>
+            <li>Weighting scheme reflects current market conditions and may need updating as markets evolve</li>
+        </ul>
+    </div>
+
+    <script>
+        // Password protection
+        function checkPassword() {
+            const savedPassword = localStorage.getItem('demand-index-password');
+            
+            if (!savedPassword) {
+                const password = prompt('Enter access code:');
+                if (password !== 'isabela2025') {
+                    alert('Invalid access code');
+                    window.location.href = 'directory.html';
+                    return false;
+                }
+                localStorage.setItem('demand-index-password', password);
+            }
+            return true;
+        }
+        
+        document.addEventListener('DOMContentLoaded', checkPassword);
+    </script>
+</body>
+</html> 
