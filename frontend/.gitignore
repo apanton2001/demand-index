@@ -1,16 +1,21 @@
-node_modules
+# Node dependencies
+node_modules/
+
+# SvelteKit build artifacts
+build/
+.svelte-kit/
+
+# IDE / OS files
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
 
 # Output
 .output
 .vercel
 .netlify
 .wrangler
-/.svelte-kit
-/build
-
-# OS
-.DS_Store
-Thumbs.db
 
 # Env
 .env
